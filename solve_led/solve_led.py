@@ -39,3 +39,19 @@ def get_local_data(path):
 	else:
 		return False
 
+
+def valid(input):
+	'''
+	This function is to valid the correct format of a single instruction.
+	If correct, return a list otherwise return False.
+	'''
+
+	# regular expression
+	compiled_pattern = re.compile('.*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*')
+	
+	# check whether the input match regex and split it
+	results = compiled_pattern.findall(input)
+	if (results):
+		return results[0]
+	else:
+		return False

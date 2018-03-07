@@ -24,3 +24,13 @@ def test_get_net_data():
 	assert solve_led.get_net_data(url).replace('\n',';').split(';')[1] == 'switch 109,360 through 331,987'
 	assert solve_led.get_net_data(url).replace('\n',';').split(';')[-2] == 'turn off 81,52 through 255,768'
 
+def test_valid():
+	# This is corrct input 
+	input = 'turn on 5,5 through 10,10'
+	assert solve_led.valid(input) == ('turn on', '5', '5', '10', '10')
+
+	input = 'switch 5,5 through 10,10'
+	assert solve_led.valid(input) == ('switch', '5', '5', '10', '10')
+
+	input = 'turn off 5,5 through 10,10'
+	assert solve_led.valid(input) == ('turn off', '5', '5', '10', '10')
